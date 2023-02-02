@@ -2,19 +2,18 @@
   <div>
     <div class="grid grid-cols-4 gap-10">
       <div class="col-span-2 grid-cols-1">
-        <Basket v-if="showBasket" />
+        <Basket :products="items" v-if="showBasket" />
       </div>
-      <Basket-summary v-if="showBasket" class="col-span-2 grid-cols-4" />
+      <Summary v-if="showBasket" class="col-span-2 grid-cols-4" />
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useBasket } from '../../stores/basket';
+import { ref, onMounted, watchEffect } from 'vue';
+import { useBasket } from '@/composables/useBasket';
 
-const basketStore = useBasket();
-const { fetchItems } = basketStore;
+const { fetchItems, items } = useBasket();
 const showBasket = ref(false);
 
 async function getBasket() {

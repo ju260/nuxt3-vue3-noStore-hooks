@@ -7,7 +7,7 @@
 </template>
 
 <script setup lang="ts">
-import mapSrcSetImage from '../../assets/mapSrcSetImage.json';
+import mapSrcSetImage from '@/assets/mapSrcSetImage.json';
 import { computed } from 'vue';
 
 const srcsetDefinition = computed(() => {

@@ -1,22 +1,22 @@
 <template>
-  <div class="">
+  <div>
     <ul class="grid gap-10">
       <li
-        class=""
-        v-for="(item, indexItem) in items"
-        :key="`item__${indexItem}`"
+        v-for="(product) in products"
+        :key="`product__${product.ref}`"
       >
-        <Basket-item :item="item" />
+        <Product-item :item="product" />
       </li>
     </ul>
   </div>
 </template>
 
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { useBasket } from './../../stores/basket';
+import Product from '@/types/product';
 
-const store = useBasket();
-const {items} = storeToRefs(store);
+interface Props {
+  products: Product[];
+}
+const props = defineProps<Props>();
 
 </script>

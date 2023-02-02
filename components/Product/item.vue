@@ -2,7 +2,7 @@
   <div class="border-b-1 text-left" v-if="item">
     <article class="flex">
       <div class="relative mr-2 flex w-7/12 justify-center">
-        <Basket-item-image
+        <Product-item-image
           class="absolute max-h-full object-contain"
           :srcset-obj="item.images[0]"
         />
@@ -13,7 +13,7 @@
         </p>
         <h3>{{ item.name }}</h3>
         <p>
-          <basketItemPrice :item="item" />
+          <Product-ItemPrice :item="item" />
         </p>
         <div class="flex">
           <button
@@ -50,13 +50,11 @@
 
 <script setup lang="ts">
 import { computed, ref, watchEffect, onMounted } from 'vue';
-import { useBasket } from '../../stores/basket';
+import { useBasket } from '@/composables/useBasket';
 import Product from '@/types/product';
 
-const basketStore = useBasket();
-const { deleteItem: deleteBasketItem } = basketStore;
-const { updateItem: updateItemQuantity } = basketStore;
-const { items: getItems } = basketStore;
+const { deleteItem: deleteBasketItem, updateItem: updateItemQuantity } =
+  useBasket();
 
 const itemQty = ref<number>(0);
 
@@ -80,8 +78,6 @@ async function removeItem(itemRef: string) {
     console.error('deleteItem error', err);
   }
 }
-
-const getOrderItems = computed(() => getItems);
 
 onMounted(() => {
   itemQty.value = props.item?.qty;

@@ -10,15 +10,11 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { storeToRefs } from 'pinia';
+import { computed, ref} from 'vue';
 import Product from '@/types/product';
+import { useBasket } from '@/composables/useBasket';
 
-import { useBasket } from '../../stores/basket';
+const { items } = useBasket();
 
-const basketStore = useBasket();
-const { items } = storeToRefs(basketStore);
 const total = computed(() => items.value.reduce((prev, cur) => prev + cur.price?.base?.amount * cur.qty, 0));
-
 </script>
-

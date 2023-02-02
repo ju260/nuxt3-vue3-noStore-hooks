@@ -1,0 +1,20 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "prettier.enable": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "eslint.lintTask.enable": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "stylelint.validate": ["css", "scss", "postcss", "sass", "vue"],
+  "stylelint.enable": true,
+  "i18n-ally.localesPaths": [
+    "locales",
+    "const/i18n",
+    "const/locales",
+    "store/modules/i18n"
+  ]
+}
